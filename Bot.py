@@ -2,7 +2,7 @@ import telebot
 
 
 
-class bot:
+class Bot:
     bot = telebot.TeleBot('709037271:AAFPMYU-Jxbc4DOMDBkdl6PR5V_G8GbNFcQ')
     updates = bot.get_updates()
     def __call__(self, bot=bot):
@@ -18,5 +18,5 @@ class bot:
         bot.polling()
 
 
-Bot = bot().__call__()
+bot = Bot().__call__()
 
