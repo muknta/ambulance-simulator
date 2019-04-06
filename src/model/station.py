@@ -18,6 +18,9 @@ class Station:
     def count_cars(self):
         return len(self.cars)
 
+    def count_calls(self):
+        return len(self.calls)
+
     def __make_call(self, call):
         pass
 
