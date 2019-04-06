@@ -15,6 +15,9 @@ class Station:
     def set_address(self, address):
         self.__address = address
 
+    def count_cars(self):
+        return len(self.cars)
+
     def __make_call(self, call):
         pass
 
