@@ -1,10 +1,14 @@
 from src.model.car import Car
 
+last_id = 0
+
 
 class Station:
-    __id = 0
-
     def __init__(self, address):
+        global last_id
+        last_id += 1
+
+        self.id = last_id
         self.__address = address
         self.calls = []
         self.cars = []
