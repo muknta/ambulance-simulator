@@ -1,3 +1,4 @@
+# Id last added car to city
 last_id = 0
 
 

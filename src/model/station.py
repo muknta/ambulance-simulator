@@ -1,5 +1,6 @@
 from src.model.car import Car
 
+# Id last added station to city
 last_id = 0
 
 
@@ -8,7 +9,7 @@ class Station:
         global last_id
         last_id += 1
 
-        self.id = last_id
+        self.__id = last_id
         self.__address = address
         self.calls = []
         self.cars = []
@@ -32,6 +33,7 @@ class Station:
         pass
 
 
+# Some test class of Station
 def test():
     station_1 = Station("Lazania 39")
     car_1 = Car()
