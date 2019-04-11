@@ -2,33 +2,41 @@ from src.model.car import Car
 from src.model.call import Call
 from src.model.station import Station
 
+import sys
+
 
 class ConsoleMenu:
     def __init__(self):
         self.stations = []
         self.choices = {
-            #"1": self.__show_stations,
-            #"2": self.__show_cars_in_station,
-            "3": self.__create_station,
-            "4": self.__add_car_to_station,
-            #"5": self.__add_call
+            "1": self.__create_station,
+            "2": self.__add_car_to_station,
+            "3": self.__add_call_to_station,
+            "4": self.__show_all_stations,
+            "5": self.__show_cars_of_stations,
+            "6": self.__show_calls_of_stations,
+            "9": self.quit
         }
 
     @staticmethod
     def display_menu():
         print("""
-        Ambulance Simulation
+        Ambulance Simulation SUPER ADMIN
         
-        1. Show all stations
-        2. Show all cars in the station
-        3. Create a new station
-        4. Add a new car to the station
-        5. Add a call to station    
+        1. Create a station
+        2. Add a car to the station
+        3. Add a call to the station
+        4. Show all stations
+        5. Show cars of stations
+        6. Show calls of stations
+        
+        9. EXIT    
         """)
 
     def run(self):
+        self.display_menu()
+
         while True:
-            self.display_menu()
             choice = input("Enter an option: ")
             action = self.choices.get(choice)
             if action:
@@ -55,6 +63,26 @@ class ConsoleMenu:
             print("Car successful added!")
         else:
             print("Station is not found.")
+
+    def __add_call_to_station(self):
+         pass
+
+    def __show_all_stations(self):
+        for i in range(len(self.stations)):
+            print("id: {}\taddress: {}".format(self.stations[i].get_id(), self.stations[i].get_address()))
+
+    def __show_cars_of_stations(self):
+        station_id = int(input("Please, enter id of station: "))
+        station = self.__find_station(station_id)
+        for i in range(len(station.cars)):
+            print("car`s id: {}\tcar`s status: {}".format(station.cars[i].get_id(), station.cars[i].get_status()))
+
+    def __show_calls_of_stations(self):
+        pass
+
+    @staticmethod
+    def quit():
+        sys.exit()
 
 
 if __name__ == "__main__":
