@@ -1,11 +1,11 @@
 import json
 import psycopg2
-from app.op.сonfig import *
+from app.op.сonfig import * # config folder
 
 
 with open('medic_data\symptoms.json', 'r') as json_file:
     json_data = json.load(json_file)
-    conn = psycopg2.connect(database=Config.database, host=Config.host, user=Config.user)
+    conn = psycopg2.connect(database=Config.database, host=Config.host, user=Config.user) #from config folder
     conn.set_client_encoding('UTF8')
     cur = conn.cursor()
     for i in json_data:
