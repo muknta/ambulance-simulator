@@ -2547,20 +2547,6 @@
     "parent_relation": null
   },
   {
-    "id": "s_1330",
-    "name": "Caf\u00e9 au lait macules",
-    "common_name": "At least six light brown marks on skin",
-    "sex_filter": "both",
-    "category": "Signs and symptoms",
-    "seriousness": "normal",
-    "extras": {},
-    "children": [],
-    "image_url": null,
-    "image_source": null,
-    "parent_id": "s_241",
-    "parent_relation": "character"
-  },
-  {
     "id": "s_1168",
     "name": "Calcification of the tympanic membrane",
     "common_name": "Calcification of the tympanic membrane",
