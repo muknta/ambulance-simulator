@@ -1,19 +1,19 @@
-last_id = 0
+from src.model.instance_counter import InstanceCounterMeta
 
 
-class Car:
+class Car(metaclass=InstanceCounterMeta):
     def __init__(self):
-        global last_id
-        last_id += 1
-
-        self.__id = last_id
+        self.__id = next(self.__class__.ids)
         self.__status = True
 
-    def get_id(self):
+    @property
+    def id(self):
         return self.__id
 
-    def get_status(self):
+    @property
+    def status(self):
         return self.__status
 
-    def set_status(self, status):
+    @status.setter
+    def status(self, status):
         self.__status = status
