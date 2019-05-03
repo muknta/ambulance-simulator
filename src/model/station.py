@@ -1,26 +1,24 @@
 from src.model.car import Car
-
-# Id last added station to city
-last_id = 0
+from src.model.instance_counter import InstanceCounterMeta
 
 
-class Station:
+class Station(metaclass=InstanceCounterMeta):
     def __init__(self, address):
-        global last_id
-        last_id += 1
-
-        self.__id = last_id
+        self.__id = next(self.__class__.ids)
         self.__address = address
         self.calls = []
         self.cars = []
 
-    def get_id(self):
+    @property
+    def id(self):
         return self.__id
 
-    def get_address(self):
+    @property
+    def address(self):
         return self.__address
 
-    def set_address(self, address):
+    @address.setter
+    def address(self, address):
         self.__address = address
 
     def count_cars(self):
@@ -40,10 +38,22 @@ def test():
 
     station_1.cars.append(car_1)
 
-    print(station_1.cars[0].get_id())
+    print(station_1.cars[0].id)
 
     count = station_1.count_cars()
     print(count)
+
+    station_2 = Station("Blafds 39")
+    print(station_2.id)
+
+    station_3 = Station("fasfg 39")
+    print(station_3.id)
+
+    car_2 = Car()
+    print(car_2.id)
+
+    car_3 = Car()
+    print(car_3.id)
 
 
 if __name__ == "__main__":
