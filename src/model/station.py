@@ -1,4 +1,4 @@
-from src.model.car import Car
+from src.model.city.car import Car
 from src.model.instance_counter import InstanceCounterMeta
 
 
