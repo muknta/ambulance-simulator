@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
 import pygame
-from src.model.singleton import Singleton
+from src.model.singleton import SingletonMeta
 
 WINDOW_TITLE = "Ambulance Car On The City"
 WIDTH = 800
@@ -8,7 +8,15 @@ HEIGHT = 600
 FPS = 40
 
 
-class Game(ABC):
+class Drawer:
+    def draw(self): pass
+
+
+class GameChanger:
+    def update(self): pass
+
+
+class Game(ABC, Drawer, GameChanger):
     done = False
     color_bg = pygame.Color('darkgrey')
 
@@ -29,7 +37,7 @@ class Game(ABC):
         pass
 
 
-class VisualCity(Singleton, Game):
+class VisualCity(Game, metaclass=SingletonMeta):
     def __init__(self):
         pygame.init()
 
@@ -43,9 +51,7 @@ class VisualCity(Singleton, Game):
     def main_loop(self):
         while not self.done:
             self.handle_events()
-
             self.update()
-
             self.draw()
 
             if self.limit_fps:

@@ -1,10 +1,12 @@
 from src.model.city.car import Car
-from src.model.instance_counter import InstanceCounterMeta
+from src.model.iterator import Iterator
 
 
-class Station(metaclass=InstanceCounterMeta):
+class Station:
+    iterator = Iterator()
+
     def __init__(self, address):
-        self.__id = next(self.__class__.ids)
+        self.__id = next(self.iterator)
         self.__address = address
         self.calls = []
         self.cars = []
