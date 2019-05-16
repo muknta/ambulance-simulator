@@ -5,28 +5,25 @@ from src.model.singleton import Singleton
 WINDOW_TITLE = "Ambulance Car On The City"
 WIDTH = 800
 HEIGHT = 600
-FPS = 60
+FPS = 40
 
 
-class Drawer(ABC):
-    @abstractmethod
+class Drawer:
     def draw(self):
         pass
 
 
-class Handler(ABC):
-    @abstractmethod
+class Handler:
     def handle_events(self):
         pass
 
 
-class Updater(ABC):
-    @abstractmethod
+class Updater:
     def update(self):
         pass
 
 
-class Game(ABC):
+class Game(ABC, Drawer, Handler, Updater):
     done = False
     color_bg = pygame.Color('darkgrey')
 
@@ -35,7 +32,7 @@ class Game(ABC):
         pass
 
 
-class VisualCity(Singleton, Game, Drawer, Handler, Updater):
+class VisualCity(Game, Singleton):
     def __init__(self):
         pygame.init()
 
@@ -43,23 +40,26 @@ class VisualCity(Singleton, Game, Drawer, Handler, Updater):
         pygame.display.set_caption(WINDOW_TITLE)
 
         self.clock = pygame.time.Clock()
+        self.limit_fps = True
+        self.now = 0
 
     def main_loop(self):
         while not self.done:
             self.handle_events()
-
             self.update()
-
             self.draw()
 
-            self.clock.tick(FPS)
+            if self.limit_fps:
+                self.clock.tick(FPS)
+            else:
+                self.clock.tick()
 
     def draw(self):
         self.screen.fill(self.color_bg)
         pygame.display.flip()
 
     def update(self):
-        pass
+        self.now = pygame.time.get_ticks()
 
     def handle_events(self):
         events = pygame.event.get()

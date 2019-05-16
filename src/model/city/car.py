@@ -1,9 +1,11 @@
-from src.model.instance_counter import InstanceCounterMeta
+from src.model.iterator import Iterator
 
 
-class Car(metaclass=InstanceCounterMeta):
+class Car:
+    iterator = Iterator()
+
     def __init__(self):
-        self.__id = next(self.__class__.ids)
+        self.__id = next(self.iterator)
         self.__status = True
 
     @property
