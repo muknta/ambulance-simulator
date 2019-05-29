@@ -8,22 +8,22 @@ HEIGHT = 600
 FPS = 40
 
 
-class Drawer:
+class Drawer(ABC):
     def draw(self):
         pass
 
 
-class Handler:
+class Handler(ABC):
     def handle_events(self):
         pass
 
 
-class Updater:
+class Updater(ABC):
     def update(self):
         pass
 
 
-class Game(ABC, Drawer, Handler, Updater):
+class Game(Drawer, Handler, Updater):
     done = False
     color_bg = pygame.Color('darkgrey')
 

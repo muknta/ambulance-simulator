@@ -1,5 +1,6 @@
 import pygame
-from pygame.locals import *
+import sys
+import os
 
 
 class Map(object):
