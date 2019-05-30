@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 import pygame
 from src.model.singleton import Singleton
+from src.model.city.city import *
 
 WINDOW_TITLE = "Ambulance Car On The City"
 WIDTH = 800
-HEIGHT = 600
+HEIGHT = 608
 FPS = 40
 
 
@@ -56,6 +57,8 @@ class VisualCity(Game, Singleton):
 
     def draw(self):
         self.screen.fill(self.color_bg)
+        Map(self.screen)
+
         pygame.display.flip()
 
     def update(self):
